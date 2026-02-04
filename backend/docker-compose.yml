@@ -1,0 +1,20 @@
+
+services:
+  db:
+    image: postgres
+    container_name: postgres_refugio
+    environment:
+      POSTGRES_USER: postgre
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: refugio
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_refugio
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
