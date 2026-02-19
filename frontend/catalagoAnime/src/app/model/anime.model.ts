@@ -1,3 +1,7 @@
+
+export interface Single{
+  mal_id: number;
+}
 export interface Jpg {
   image_url: string;
 }
@@ -7,6 +11,7 @@ export interface Images{
 }
 
 export interface Anime {
+mal_id: any;
   title: string;
   images: Images;
 

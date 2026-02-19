@@ -8,9 +8,12 @@ import { environment } from '../../environments/environment';
 export class Animeservice {
 
   private http = inject(HttpClient);
-  private  readonly  apiUrl = `${environment.apiUrl}/animes`;
+  private  readonly  apiUrl = `${environment.apiUrl}/anime`;
 
   listarAnimes() {
     return this.http.get<AnimeResponse>(this.apiUrl);
+  }
+  listarAnimePorId(id: number) {
+    return this.http.get<AnimeResponse>(`${this.apiUrl}/${id}`);
   }
 }

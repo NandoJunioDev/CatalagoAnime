@@ -6,9 +6,12 @@
     <div class="card">
       <h3>{{ anime.title }}</h3>
       <img [src]="anime.images.jpg.image_url" [alt]="anime.title" width="200">
+      
     </div>
   } @empty {
     <p>Buscando animes no servidor...</p>
   }
 </div>
-<router-outlet></router-outlet>
+<router-outlet>
+
+</router-outlet>
