@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { Animeservice } from './service/animeservice';
 import { Anime } from './model/anime.model';
 import { Cards } from "./cards/cards";
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -20,7 +21,9 @@ export class App implements OnInit {
   private route = inject(ActivatedRoute);
   animes:Anime[] = [];
 
-  ngOnInit() {
+
+
+  ngOnInit():void {
     this.animeservice.listarAnimes().subscribe(response => {
 
       const idDaRota = this.route.snapshot.paramMap.get('id');
@@ -28,7 +31,10 @@ export class App implements OnInit {
 
       this.animes = response.data; // Pega a lista de dentro da "caixona"
 
-
+      
     });
   }
 }
+
+
+

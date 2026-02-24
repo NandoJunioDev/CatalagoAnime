@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ObservableService } from '../../service/observable-service';
 
 @Component({
   selector: 'app-public',
@@ -6,6 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: './public.html',
   styleUrl: './public.scss',
 })
-export class Public {
+export class Public implements OnInit {
 
+
+
+
+  ngOnInit(): void {
+
+  }
 }
