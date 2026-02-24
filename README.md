@@ -97,8 +97,8 @@ docker-compose up --build
 
 <strong> Fernando Junio Teixeira Medeiros </strong> 
 
- <strong> Estudante de Engenharia de Software na Estácio.   </strong>    
+ <strong>  🎓 Estudante de Engenharia de Software na Estácio.   </strong>    
 
-<strong> Residente em Cabo Frio, RJ. </strong>  
+
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/fernando-junio-46bb892b8/) 
