@@ -1,79 +1,86 @@
-⛩️ Anime Catalog - Full-Stack Application
-Este projeto é uma plataforma robusta desenvolvida para consulta e gerenciamento de títulos de animes, consumindo dados em tempo real da Jikan API (REST). A aplicação foi desenhada com foco em escalabilidade e performance, utilizando o ecossistema Java no backend e Angular no frontend.
+O Gemini disse
+Aqui está uma versão do seu README.md com um design profissional, utilizando ícones e uma estrutura de "Documentação de Produto". Esse formato é muito valorizado em processos seletivos para engenharia de software porque demonstra cuidado com o projeto e facilidade para outros desenvolvedores colaborarem.
+
+⛩️ Anime Catalog - Full-Stack Solution
+📝 Resumo do Projeto
+O Anime Catalog é uma aplicação Full-Stack desenvolvida para facilitar a busca e o gerenciamento de informações sobre animes, utilizando dados em tempo real da Jikan API (REST). O projeto foi construído para demonstrar competências em integração de APIs externas, arquitetura de microsserviços e deploy automatizado em nuvem.
+
+🚀 Principais Funcionalidades
+
+Busca em Tempo Real: Integração com Jikan API via FeignClient para recuperação de dados de animes, personagens e episódios.
 
 
-🚀 Resumo do Projeto
-A plataforma permite aos usuários explorar um vasto catálogo de animes, visualizar detalhes técnicos e gerenciar preferências, tudo isso através de uma interface moderna e responsiva. O backend atua como um facilitador, processando dados da API externa e gerenciando a persistência em nuvem.
+Arquitetura Robusta: Backend estruturado sob os princípios SOLID e padrão MVC.
 
 
-🛠️ Tecnologias Utilizadas
-Backend
-
-Java 25 & Spring Boot: Núcleo da aplicação para criação de APIs RESTful.
+Interface Adaptável: Frontend dinâmico com Angular, focado em performance e experiência do usuário Mobile First.
 
 
+Persistência em Nuvem: Gerenciamento de dados utilizando PostgreSQL hospedado no AWS RDS.
++1
 
-Spring Cloud OpenFeign: Utilizado para o consumo simplificado e eficiente da Jikan API.
+🛠️ Stack Tecnológica
+Backend (Java Ecosystem)
+Java 25: Utilizando as últimas funcionalidades da linguagem.
 
 
-
-PostgreSQL: Banco de dados relacional para persistência de dados.
-
+Spring Boot: Framework base para a construção das APIs.
 
 
-Spring Data JPA: Abstração da camada de persistência.
+Spring Cloud OpenFeign: Para consumo declarativo de APIs externas.
 
+
+PostgreSQL: Banco de dados relacional para persistência de dados críticos.
 
 Frontend
 
-Angular: Framework para construção de uma SPA (Single Page Application) dinâmica.
-
-
-
-TailwindCSS: Framework CSS utilitário para estilização rápida e responsiva.
+Angular: Framework para criação de uma SPA (Single Page Application) escalável.
 +1
 
 
-Mobile First: Design focado na experiência em dispositivos móveis.
+TailwindCSS: Estilização moderna e utilitária para interfaces responsivas.
+
+Infraestrutura & DevOps
+
+Docker: Conteinerização para garantir paridade entre ambientes.
 
 
-Infraestrutura & Cloud
-
-Docker: Conteinerização de toda a aplicação para consistência entre ambientes.
-
+AWS (ECR & App Runner): Orquestração de containers e deploy contínuo.
++1
 
 
-AWS RDS: Banco de dados gerenciado na nuvem.
+CI/CD: Fluxo de integração e entrega contínua para maior agilidade no desenvolvimento.
 
-
-AWS App Runner & ECR: Orquestração e deploy automatizado dos containers.
-
-⚙️ Como rodar o projeto localmente
+⚙️ Como Executar o Projeto Localmente
 Pré-requisitos
 Docker e Docker Compose instalados.
 
-Java 25 (ou versão compatível) e Node.js/Angular CLI (caso queira rodar sem Docker).
+Java 25 (opcional se usar Docker).
 
-Passo a Passo
+Instalação
 Clone o repositório:
 
 Bash
-git clone https://github.com/NandoJunioDev/nome-do-repositorio.git
-cd nome-do-repositorio
-Suba os serviços via Docker (Recomendado):
-Na raiz do projeto, execute:
+git clone https://github.com/NandoJunioDev/CatalagoAnime.git
+cd CatalagoAnime
+Suba os serviços via Docker Compose:
 
 Bash
 docker-compose up --build
-
-Isso iniciará o banco de dados PostgreSQL, o Backend e o Frontend simultaneamente.
-
+Este comando irá configurar automaticamente o banco de dados PostgreSQL, o backend e o frontend.
 
 Acesse a aplicação:
 
+Interface Web (Angular): http://localhost:4200
 
-Frontend: http://localhost:4200 
+Documentação da API (Swagger): http://localhost:8080/swagger-ui.html
 
+👨‍💻 Desenvolvedor
 
+Fernando Junio Teixeira Medeiros 
 
-Backend (API Docs): http://localhost:8080/swagger-ui.html
+Estudante de Engenharia de Software na Estácio.
+
+Residente em Cabo Frio, RJ.
+
+LinkedIn | GitHub
