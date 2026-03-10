@@ -13,15 +13,21 @@ import { DetalhesDosCards } from '../../detalhes-dos-cards/detalhes-dos-cards/de
 })
 export class Home implements OnInit {
 
-   private animeservice = inject(Animeservice);
-  private route = inject(ActivatedRoute);
-  animes:Anime[] = [];
+   private animeservice = inject(Animeservice); // injençao do service
+  private route = inject(ActivatedRoute);// injenção do AcivatedRouted, quer vai o observar a rota
+  animes:Anime[] = []; // array do tipo Anime, o Anime é model dos dados
 
 
 
   ngOnInit():void {
-    this.animeservice.listarAnimes().subscribe(response => {
 
+// aqui chamos o service e funçao que ira, realizar as consulta
+// o .subscribe serve para ligar a a funçao
+// reponse sera a variavel, auxiliar 
+    this.animeservice.listarAnimes().subscribe(response => { 
+
+      // aqui atribuimos o o valor a variavel que sebera a o id atraves dos dados que vao chegar 
+// route(o instancia do activedrouter), .snapshot( funçao na qual pegamos o valor atual da rota)
       const idDaRota = this.route.snapshot.paramMap.get('id');
       console.log('ID da rota:', idDaRota);
 
