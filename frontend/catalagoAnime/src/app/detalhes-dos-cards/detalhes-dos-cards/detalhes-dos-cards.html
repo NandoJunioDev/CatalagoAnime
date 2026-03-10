@@ -1,0 +1,17 @@
+<h1> {{ animeSelecionado?.title}}</h1>
+<p> {{ animeSelecionado?.synopsis}}</p>
+
+
+@if (animeSelecionado) {
+  <div  >
+  <img [src]="animeSelecionado?.data?.images?.jpg?.image_url" alt="capa do anime">
+  <h2>{{ animeSelecionado?.data?.title}}</h2>
+</div>
+}@else {
+  <p>buscando dados no servidos java</p>
+}
+<span>
+  <button (click)="voltarParaHome()">Voltar</button>
+</span>
+
+
