@@ -19,3 +19,5 @@ mal_id: any;
 export interface AnimeResponse {
   data: Anime[];
 }
+// model do back end , e como funciona json
+// aqui nesse model, pe espelho do json, que vem da APi do Jikan

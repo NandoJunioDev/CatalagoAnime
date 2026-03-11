@@ -13,14 +13,14 @@ import { Home } from './home-page/home/home';
 
 export const routes: Routes = [
   {
-    path:"home", component:Home, pathMatch:'full'
+    path:"home", component:Home, pathMatch:'full' // rota para a pagina home
   },
   {
-    path:"detalhes/:id", component:DetalhesDosCards, pathMatch:'full'
+    path:"detalhes/:id", component:DetalhesDosCards, pathMatch:'full' // rota para pagina de id anime
 
   },
   {
-    path:"**", redirectTo:'home'
+    path:"**", redirectTo:'home' // caso der  tudo erro volta  para o principal
   }
 
 
