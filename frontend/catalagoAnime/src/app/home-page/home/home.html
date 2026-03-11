@@ -1,13 +1,18 @@
-//<div class="container">
-  @for (anime of animes; track anime.title) {
+<div class="container"> <!-- aqui criamos o container -->
 
+
+  <!-- aqui criamos o loop para percorrer o array de animes -->
+   <!-- anime é uma variavel que percorre o arrya de animes, track(seguindo, anime.title os titulos)-->
+  @for (anime of animes; track anime.title)  {
+      <!-- aqui criamos o card para cada anime, e o routerLink para direcionar para a pagina de detalhes do anime , o anime.mal_id para pegar o id do anime -->
     <div class="card" [routerLink]="['/detalhes', anime.mal_id]">
+        <!-- aqui criamos a imagem do anime, e o titulo do anime, baseado nos dados que vieram da api -->
 
-      <img [src]="anime.images.jpg.image_url" [alt]="anime.title" width="200">
+      <img [src]="anime.images.jpg.image_url" [alt]="anime.title" width="200"> <!-- aqui criamos a imagem do anime, vale ressaltar [src] e [alt] para pegar os dados da api o colchetes é para fazer o bind da propriedade-->
       <h3>{{ anime.title }}</h3>
 
     </div>
-  } @empty {
+  } @empty { <!-- criamos a mensagem quando não tiver animes-->
     <p>Buscando animes no servidor...</p>
   }
 </div>

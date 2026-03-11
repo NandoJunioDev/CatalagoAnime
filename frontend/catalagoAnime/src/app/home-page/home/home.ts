@@ -13,21 +13,24 @@ import { DetalhesDosCards } from '../../detalhes-dos-cards/detalhes-dos-cards/de
 })
 export class Home implements OnInit {
 
-   private animeservice = inject(Animeservice);
-  private route = inject(ActivatedRoute);
-  animes:Anime[] = [];
+  private animeservice = inject(Animeservice); // injetamos o service
+
+  private route = inject(ActivatedRoute); // usamos activated route para observar a rota
+
+  animes:Anime[] = []; // array do tipo anime, que é o model que definimos, e aqui vamos lista a resposta da api as lista de animes e depois usar ela no html
 
 
 
   ngOnInit():void {
-    this.animeservice.listarAnimes().subscribe(response => {
+    // aqui chamoos o service o hook inicializador, e dentro dele fazemos a chamada no service, e da mos subscribe para pegar a resposta, e dentro do subscribe pegamos a resposta e colocamos na variavel animes, que é um array de anime, e dentro do response tem uma propriedade data, que é onde esta a lista de animes, entao pegamos essa lista e colocamos na variavel animes, para depois usar ela no html.
 
-      const idDaRota = this.route.snapshot.paramMap.get('id');
-      console.log('ID da rota:', idDaRota);
+    this.animeservice.listarAnimes().subscribe((response) => {
+      this.animes = response.data;
 
-      this.animes = response.data; // Pega a lista de dentro da "caixona"
 
+       // aqui pegamos a resposta da api, e colocamos na variavel animes, que é um array de anime, e dentro do response tem uma propriedade data, que é onde esta a lista de animes, entao pegamos essa lista e colocamos na variavel animes, para depois usar ela no html.
 
     });
   }
+
 }

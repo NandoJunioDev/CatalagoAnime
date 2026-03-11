@@ -1,10 +1,11 @@
-<h1> {{ animeSelecionado?.title}}</h1>
+<h1> {{ animeSelecionado?.title}}</h1> <!-- aqui usamos o operador de navegação segura para evitar erros caso o animeSelecionado seja null ou undefined, o ponto de interrogação é para verificar se o animeSelecionado existe antes de tentar acessar a propriedade title, caso não exista ele retorna undefined e não da erro -->
+<span>synopisis</span>
 <p> {{ animeSelecionado?.synopsis}}</p>
 
 
 @if (animeSelecionado) {
   <div  >
-  <img [src]="animeSelecionado?.data?.images?.jpg?.image_url" alt="capa do anime">
+  <img [src]="animeSelecionado?.data?.images?.jpg?.image_url" alt="capa do anime"> <!-- aqui usamos o operador de navegação segura para evitar erros caso o animeSelecionado seja null ou undefined, o ponto de interrogação é para verificar se o animeSelecionado existe antes de tentar acessar a propriedade data, images, jpg e image_url, caso não exista ele retorna undefined e não da erro -->
   <h2>{{ animeSelecionado?.data?.title}}</h2>
 </div>
 }@else {
