@@ -1,26 +1,27 @@
-// 1. CONFIGURAÇÕES TIPO "STREAMING"
+// 1. CONFIGURAÇÕES TIPO "STREAMING" (MANTIDO)
 $primary: #8b5cf6;
 $accent: #00d4ff;
-$glass: rgba(15, 23, 42, 0.85);
+$glass: rgba(15, 23, 42, 0.90); // Um pouco mais opaco para ler melhor a sinopse
 $border: rgba(255, 255, 255, 0.1);
 
 body {
   display: flex;
   flex-direction: column;
-  align-items: center; // Centraliza tudo horizontalmente
+  align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
   margin: 0;
   padding: 20px;
   color: #fff;
   font-family: 'Inter', sans-serif;
-  // O fundo a gente mantém conforme o anterior (com blur)
+  background-color: #0f172a; // Fundo escuro padrão caso o blur falhe
 }
 
-// 2. TÍTULO NO TOPO
+// 2. TÍTULO NO TOPO (MANTIDO)
 .titulo-anime {
   font-family: 'Kanit', cursive;
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-size: clamp(2.5rem, 6vw, 4rem); // Ajustado levemente o tamanho
+  margin-top: 1rem;
   margin-bottom: 2rem;
   text-align: center;
   background: linear-gradient(to bottom, #fff, $primary);
@@ -28,17 +29,12 @@ body {
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
   font-weight: 400;
-  font-spacing: 4px;
+  letter-spacing: 2px;
 }
 
 // 3. O CARD CENTRALIZADO (Página de Detalhes)
 .main-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-
-  max-width: 800px; // Largura confortável para leitura
+  max-width: 1000px; // Aumentado para caber imagem + texto lado a lado
   width: 95%;
   padding: 40px;
   background: $glass;
@@ -46,59 +42,113 @@ body {
   border: 1px solid $border;
   border-radius: 32px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  margin: 0 auto 30px auto; // Centraliza e dá margem embaixo
+  margin: 0 auto 30px auto;
+  display: flex; // Necessário para centralizar o loading se precisar
+  justify-content: center;
 }
 
-// 4. ELEMENTOS DA IMAGEM E INFO
-.cotainer-image-anime {
-  width: 100%;
+// --- MÁGICA DO FLEXBOX AQUI ---
+// 4. WRAPPER DE CONTEÚDO (Coloca imagem e info lado a lado)
+.content-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row; // Alinha horizontalmente
+  align-items: flex-start; // Alinha o topo da imagem com o topo do texto
+  gap: 40px; // Espaçamento generoso entre imagem e texto
+  width: 100%;
+
+  // Responsividade: Se a tela for pequena (celular), empilha de novo
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+// 5. GRUPO DA ESQUERDA (Imagem)
+.cotainer-image-anime {
+  flex-shrink: 0; // Impede que a imagem diminua se o texto for grande
 
   .image-src {
-    width: 280px; // Tamanho fixo para o pôster de detalhe
+    width: 280px; // Tamanho do pôster
+    height: auto;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    margin-bottom: 20px;
     transition: transform 0.3s ease;
 
     &:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
+  }
+}
+
+// 6. GRUPO DA DIREITA (Info e Sinopse)
+.container-info-anime {
+  flex-grow: 1; // Ocupa o restante do espaço disponível
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; // Alinha textos à esquerda no desktop
+  text-align: left;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    text-align: center;
   }
 }
 
 .title-anime-small {
   font-family: 'Kanit', sans-serif;
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: $accent;
-  margin: 10px 0;
+  margin: 0 0 15px 0; // Remove margens desnecessárias
+  line-height: 1.2;
 }
 
-// 5. SINOPSE (Organizada e legível)
-.titile-synopsis { // Mantive o erro de digitação do seu HTML para funcionar direto
+// 7. SINOPSE (Organizada e legível)
+.div-synopis {
+  width: 100%;
+}
+
+.titile-synopsis { // Mantido erro de digitação do HTML para compatibilidade
   display: block;
   font-family: 'Kanit', sans-serif;
-  font-size: 1.1rem;
+  font-size: 0.9rem; // Um pouco menor para ficar elegante
   text-transform: uppercase;
   color: $primary;
-  letter-spacing: 2px;
-  margin-top: 20px;
+  letter-spacing: 3px;
+  margin-top: 10px;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .synopse {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 600px;
-  margin: 0 auto 20px auto;
+  font-size: 1.05rem;
+  line-height: 1.8; // Aumentado para melhorar a leitura de textos longos
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-weight: 350;
+  font-familty: 'Inter', sans-serif;
+  // Opcional: limita a altura e adiciona scroll se a sinopse for gigante
+  // max-height: 300px;
+  // overflow-y: auto;
+  // padding-right: 10px;
 }
 
-// 6. BOTÃO VOLTAR
+// 8. ESTADOS AUXILIARES
+.loading-container {
+  padding: 40px;
+  text-align: center;
+}
+
+.loading {
+  color: $accent;
+  font-family: 'Kanit', sans-serif;
+  animation: pulse 1.5s infinite;
+}
+
+// 9. BOTÃO VOLTAR
 .div-button-back {
   margin-top: 10px;
+  margin-bottom: 40px; // Espaço no fim da página
   width: 100%;
   display: flex;
   justify-content: center;
@@ -115,10 +165,60 @@ body {
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
     transition: all 0.3s ease;
+    letter-spacing: 1px;
 
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.05) translateY(-2px); // Efeito de levantar levemente
       box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
     }
+  }
+}
+
+//Animação simples de pulse
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+// 8. ESTADOS AUXILIARES (Refatorado para a animação)
+.loading-container {
+  padding: 60px 40px; // Aumentado para dar destaque à animação
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px; // Espaço entre a animação e o texto
+  width: 100%;
+}
+
+.loading-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Kanit', sans-serif;
+  font-size: 1.1rem;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+// Estilos para o Wrapper da Animação
+.animation-wrapper {
+  display: flex;
+  gap: 15px; // Espaço entre as bolinhas
+  justify-content: center;
+  align-items: center;
+  height: 100px; // Altura fixa para o container de animação
+mix-blend-mode: multiply;
+
+    // Opcional: Aumentar o contraste para as cores dela não ficarem muito escuras
+    filter: contrast(110%) brightness(110%);
+  // --- Estilo se você usar a OPÇÃO A (GIF) ---
+  .gif-loading {
+    width: 200px; // Ajuste o tamanho da boneca aqui
+    height: auto;
+    border-radius: 50%;
+    mix-blend-mode: multiply;
+
+    // Opcional: Aumentar o contraste para as cores dela não ficarem muito escuras
+    filter: contrast(110%) brightness(110%);
   }
 }

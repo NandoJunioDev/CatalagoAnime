@@ -9,8 +9,8 @@ export class Animeservice {
 
   private http = inject(HttpClient);
   private  readonly  apiUrl = `${environment.apiUrl}/anime`;
-  private http = inject(HttpClient); // injeção do HttpClient para fazer requisições HTTP
-  private  readonly  apiUrl = `${environment.apiUrl}/anime`;  // url da api
+
+
 
   listarAnimes() {
     return this.http.get<AnimeResponse>(this.apiUrl);

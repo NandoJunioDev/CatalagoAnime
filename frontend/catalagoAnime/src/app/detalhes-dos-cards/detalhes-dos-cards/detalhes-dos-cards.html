@@ -1,24 +1,48 @@
-<h1 class="titulo-anime"> {{ animeSelecionado?.data?.title}}</h1> <!-- aqui usamos o operador de navegação segura para evitar erros caso o animeSelecionado seja null ou undefined, o ponto de interrogação é para verificar se o animeSelecionado existe antes de tentar acessar a propriedade title, caso não exista ele retorna undefined e não da erro -->
-<div>
-  <span class="titile-synopsis">synopisi</span>
-  <p class="synopse" > {{ animeSelecionado?.synopsis}}</p>
-</div>
+<h1 class="titulo-anime">{{ animeSelecionado?.title }}</h1>
 
 <main class="main-container">
   @if (animeSelecionado) {
-    <div  class="cotainer-image-anime" >
-    <img class="image-src" [src]="animeSelecionado?.data?.images?.jpg?.image_url" alt="capa do anime"> <!-- aqui usamos o operador de navegação segura para evitar erros caso o animeSelecionado seja null ou undefined, o ponto de interrogação é para verificar se o animeSelecionado existe antes de tentar acessar a propriedade data, images, jpg e image_url, caso não exista ele retorna undefined e não da erro -->
-    <h2 class="title-anime-small">{{ animeSelecionado?.data?.title}}</h2>
-  </div>
-  }@else {
-    <p class="loading">buscando dados no servidos java</p>
+    <div class="content-wrapper">
+
+      <div class="cotainer-image-anime">
+        <img class="image-src" [src]="animeSelecionado?.images?.jpg?.image_url" alt="capa do anime">
+      </div>
+
+      <div class="container-info-anime">
+        <h2 class="title-anime-small">{{ animeSelecionado?.title }}</h2>
+
+        <div class="div-synopis">
+          <span class="titile-synopsis">synopsis</span>
+          <p class="synopse">{{ animeSelecionado?.synopsis }}</p>
+        </div>
+      </div>
+
+    </div>
+  } @else {
+
+
+
+    <div class="loading-container">
+
+      <div class="loading-container">
+        <img src="https://media1.tenor.com/m/Nys6GH_P9fAAAAAC/umamusume-loading.gif"
+       alt="Carregando..."
+       class="gif-loading">
+      </div>
+
+      <div class="animation-wrapper">
+
+        <div class="dot-runner"></div>
+        <div class="dot-runner"></div>
+        <div class="dot-runner"></div>
+      </div>
+    <div class="loading-container">
+      <p class="loading">Buscando dados no servidor Java...</p>
+    </div>
+    </div>
   }
 </main>
 
 <div class="div-button-back">
-<button (click)="voltarParaHome()">Voltar</button>
+  <button (click)="voltarParaHome()">Voltar</button>
 </div>
-
-
-
-

@@ -20,7 +20,7 @@
     object-fit: cover; // Garante que o vídeo cubra a tela sem esticar
 
     // Opcional: Desfoque para não distrair o usuário
-    filter: blur(15px);
+    filter: blur(10px);
   }
 
   // Camada escura por cima do vídeo para o texto branco aparecer
@@ -30,6 +30,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9); // Escurece o vídeo em 50%
+    background: rgba(0, 0, 0, 0.86); // Escurece o vídeo em 50%
   }
 }

@@ -11,9 +11,10 @@ export interface Images{
 }
 
 export interface Anime {
-mal_id: any;
+mal_id: Number;
   title: string;
   images: Images;
+  synopsis: string;
 
 }
 export interface AnimeResponse {
