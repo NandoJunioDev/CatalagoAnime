@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8080' // URL da API para produção
+  apiUrl: 'https://catalagoanime.onrender.com/anime' // URL da API para produção
 };
