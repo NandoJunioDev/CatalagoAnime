@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 @EnableFeignClients
 @FeignClient( name = "jikanApi", url = "https://api.jikan.moe/v4")
 public interface AnimeClient {
-    @GetMapping("/anime")
+    @GetMapping()
     public ClienteAnimeDtoResponse helloJikanApi();
 
 
-    @GetMapping("/anime/{id}")
+    @GetMapping("/{id}")
     public SingleAnimeDtoResponse animeId( @PathVariable Integer id );
 
 
