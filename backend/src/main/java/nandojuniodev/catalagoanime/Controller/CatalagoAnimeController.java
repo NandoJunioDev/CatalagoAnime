@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @CrossOrigin(origins = "*")
-@RequestMapping()
+@RequestMapping("anime")
 @RestController
 @RequiredArgsConstructor
 
