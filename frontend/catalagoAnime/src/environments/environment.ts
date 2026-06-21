@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://catalagoanime.onrender.com' // URL da API para produção
+  apiUrl: 'https://catalagoanime.onrender.com/anime' // URL da API para produção
 };

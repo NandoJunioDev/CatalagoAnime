@@ -7,43 +7,33 @@ import { DetalhesDosCards } from '../../detalhes-dos-cards/detalhes-dos-cards/de
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [RouterOutlet, CommonModule, RouterLink, DetalhesDosCards],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home implements OnInit {
 
-  private animeservice = inject(Animeservice); // injetamos o service
+  private animeservice = inject(Animeservice);
+  private route = inject(ActivatedRoute);
+  
+  animes: Anime[] = []; 
 
-  private route = inject(ActivatedRoute);// injenção do AcivatedRouted, quer vai o observar a rota
-  animes:Anime[] = []; // array do tipo Anime, o Anime é model dos dados
+  ngOnInit(): void {
+    // 1. Capturar o ID da rota (executado de forma síncrona logo que o componente inicia)
+    const idDaRota = this.route.snapshot.paramMap.get('id');
+    console.log('ID capturado da rota:', idDaRota);
 
-
-
-  ngOnInit():void {
-
-    // aqui chamoos o service o hook inicializador, e dentro dele fazemos a chamada no service, e da mos subscribe para pegar a resposta, e dentro do subscribe pegamos a resposta e colocamos na variavel animes, que é um array de anime, e dentro do response tem uma propriedade data, que é onde esta a lista de animes, entao pegamos essa lista e colocamos na variavel animes, para depois usar ela no html.
-
-    this.animeservice.listarAnimes().subscribe((response) => {
-      this.animes = response.data;
-
-
-// aqui chamos o service e funçao que ira, realizar as consulta
-// o .subscribe serve para ligar a a funçao
-// reponse sera a variavel, auxiliar
-    this.animeservice.listarAnimes().subscribe(response => {
-
-      // aqui atribuimos o o valor a variavel que sebera a o id atraves dos dados que vao chegar
-// route(o instancia do activedrouter), .snapshot( funçao na qual pegamos o valor atual da rota)
-      const idDaRota = this.route.snapshot.paramMap.get('id');
-      console.log('ID da rota:', idDaRota);
-
-
-
-       // aqui pegamos a resposta da api, e colocamos na variavel animes, que é um array de anime, e dentro do response tem uma propriedade data, que é onde esta a lista de animes, entao pegamos essa lista e colocamos na variavel animes, para depois usar ela no html.
-
+    // 2. Fazer a chamada à API apenas uma vez
+    this.animeservice.listarAnimes().subscribe({
+      next: (response) => {
+        // Atribui os dados à variável que vai renderizar o HTML
+        this.animes = response.data;
+        console.log('Animes carregados:', this.animes);
+      },
+      error: (erro) => {
+        console.error('Erro ao carregar a lista de animes:', erro);
+      }
     });
   }
-)}
 }
-

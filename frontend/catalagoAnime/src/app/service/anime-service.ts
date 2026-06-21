@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 export class Animeservice {
 
   private http = inject(HttpClient);
-  private  readonly  apiUrl = `${environment.apiUrl}/anime`;
+  private  readonly  apiUrl = `${environment.apiUrl}`;
 
 
 

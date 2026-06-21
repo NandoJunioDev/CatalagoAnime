@@ -1,224 +1,169 @@
-// 1. CONFIGURAÇÕES TIPO "STREAMING" (MANTIDO)
-$primary: #8b5cf6;
-$accent: #00d4ff;
-$glass: rgba(15, 23, 42, 0.90); // Um pouco mais opaco para ler melhor a sinopse
-$border: rgba(255, 255, 255, 0.1);
+// === Variáveis de Cor (Tema Dark / Anime) ===
+$bg-color: #121214;        // Fundo principal escuro
+$card-bg: #202024;         // Fundo do card
+$text-primary: #e1e1e6;    // Texto principal
+$text-secondary: #a8a8b3;  // Texto secundário (sinopse)
+$accent-color: #8257e5;    // Roxo moderno (estilo gamer/otaku)
+$accent-hover: #9466ff;    // Roxo mais claro para o hover
 
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+// === Reset Básico e Fundo ===
+:host {
+  display: block;
   min-height: 100vh;
-  margin: 0;
-  padding: 20px;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  background-color: #0f172a; // Fundo escuro padrão caso o blur falhe
+  background-color: $bg-color;
+  color: $text-primary;
+  padding: 2rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-// 2. TÍTULO NO TOPO (MANTIDO)
+// === Título Principal ===
 .titulo-anime {
-  font-family: 'Kanit', cursive;
-  font-size: clamp(2.5rem, 6vw, 4rem); // Ajustado levemente o tamanho
-  margin-top: 1rem;
+  font-size: 2.5rem;
+  color: $accent-color;
   margin-bottom: 2rem;
   text-align: center;
-  background: linear-gradient(to bottom, #fff, $primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
-  font-weight: 400;
+  text-transform: uppercase;
   letter-spacing: 2px;
+  text-shadow: 0px 4px 15px rgba($accent-color, 0.4);
 }
 
-// 3. O CARD CENTRALIZADO (Página de Detalhes)
+// === Container Principal ===
 .main-container {
-  max-width: 1000px; // Aumentado para caber imagem + texto lado a lado
-  width: 95%;
-  padding: 40px;
-  background: $glass;
-  backdrop-filter: blur(20px);
-  border: 1px solid $border;
-  border-radius: 32px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  margin: 0 auto 30px auto;
-  display: flex; // Necessário para centralizar o loading se precisar
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-// --- MÁGICA DO FLEXBOX AQUI ---
-// 4. WRAPPER DE CONTEÚDO (Coloca imagem e info lado a lado)
+// === Estrutura do Card de Detalhes ===
 .content-wrapper {
   display: flex;
-  flex-direction: row; // Alinha horizontalmente
-  align-items: flex-start; // Alinha o topo da imagem com o topo do texto
-  gap: 40px; // Espaçamento generoso entre imagem e texto
+  flex-direction: column;
+  background-color: $card-bg;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  max-width: 900px;
   width: 100%;
-
-  // Responsividade: Se a tela for pequena (celular), empilha de novo
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  
+  // A mágica da responsividade: tela de PC fica lado a lado
+  @media (min-width: 768px) {
+    flex-direction: row;
   }
 }
 
-// 5. GRUPO DA ESQUERDA (Imagem)
+// === Imagem do Anime ===
 .cotainer-image-anime {
-  flex-shrink: 0; // Impede que a imagem diminua se o texto for grande
-
+  flex: 0 0 auto;
+  
   .image-src {
-    width: 280px; // Tamanho do pôster
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    transition: transform 0.3s ease;
-
-    &:hover {
-      transform: scale(1.03);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: 450px;
+    
+    @media (min-width: 768px) {
+      width: 320px; 
+      max-height: unset;
     }
   }
 }
 
-// 6. GRUPO DA DIREITA (Info e Sinopse)
+// === Informações (Título menor e Sinopse) ===
 .container-info-anime {
-  flex-grow: 1; // Ocupa o restante do espaço disponível
+  padding: 2rem;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; // Alinha textos à esquerda no desktop
-  text-align: left;
+  gap: 1.5rem;
 
-  @media (max-width: 768px) {
-    align-items: center;
-    text-align: center;
+  .title-anime-small {
+    font-size: 1.8rem;
+    color: $text-primary;
+    border-bottom: 2px solid $accent-color;
+    padding-bottom: 0.8rem;
+    margin: 0;
   }
 }
 
-.title-anime-small {
-  font-family: 'Kanit', sans-serif;
-  font-size: 2rem;
-  color: $accent;
-  margin: 0 0 15px 0; // Remove margens desnecessárias
-  line-height: 1.2;
-}
-
-// 7. SINOPSE (Organizada e legível)
+// === Caixa de Sinopse ===
 .div-synopis {
-  width: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid $accent-color;
+
+  .titile-synopsis {
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: $accent-color;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .synopse {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: $text-secondary;
+    text-align: justify;
+    margin: 0;
+  }
 }
 
-.titile-synopsis { // Mantido erro de digitação do HTML para compatibilidade
-  display: block;
-  font-family: 'Kanit', sans-serif;
-  font-size: 0.9rem; // Um pouco menor para ficar elegante
-  text-transform: uppercase;
-  color: $primary;
-  letter-spacing: 3px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-.synopse {
-  font-size: 1.05rem;
-  line-height: 1.8; // Aumentado para melhorar a leitura de textos longos
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
-  font-weight: 350;
-  font-familty: 'Inter', sans-serif;
-  // Opcional: limita a altura e adiciona scroll se a sinopse for gigante
-  // max-height: 300px;
-  // overflow-y: auto;
-  // padding-right: 10px;
-}
-
-// 8. ESTADOS AUXILIARES
-.loading-container {
-  padding: 40px;
-  text-align: center;
-}
-
-.loading {
-  color: $accent;
-  font-family: 'Kanit', sans-serif;
-  animation: pulse 1.5s infinite;
-}
-
-// 9. BOTÃO VOLTAR
+// === Botão de Voltar ===
 .div-button-back {
-  margin-top: 10px;
-  margin-bottom: 40px; // Espaço no fim da página
+  margin-top: 3rem;
+  text-align: center;
   width: 100%;
-  display: flex;
-  justify-content: center;
 
   button {
-    padding: 12px 40px;
-    font-family: 'Kanit', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    background: linear-gradient(135deg, $primary, #6d28d9);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
+    background-color: transparent;
+    color: $accent-color;
+    border: 2px solid $accent-color;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
     transition: all 0.3s ease;
-    letter-spacing: 1px;
 
     &:hover {
-      transform: scale(1.05) translateY(-2px); // Efeito de levantar levemente
-      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+      background-color: $accent-color;
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba($accent-color, 0.4);
     }
   }
 }
 
-//Animação simples de pulse
-@keyframes pulse {
-  0% { opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; }
-}
-
-// 8. ESTADOS AUXILIARES (Refatorado para a animação)
+// === Animação de Loading ===
 .loading-container {
-  padding: 60px 40px; // Aumentado para dar destaque à animação
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 25px; // Espaço entre a animação e o texto
-  width: 100%;
-}
-
-.loading-text {
-  color: rgba(255, 255, 255, 0.7);
-  font-family: 'Kanit', sans-serif;
-  font-size: 1.1rem;
-  margin: 0;
-  letter-spacing: 1px;
-}
-
-// Estilos para o Wrapper da Animação
-.animation-wrapper {
-  display: flex;
-  gap: 15px; // Espaço entre as bolinhas
   justify-content: center;
-  align-items: center;
-  height: 100px; // Altura fixa para o container de animação
-mix-blend-mode: multiply;
+  gap: 1.5rem;
+  margin-top: 2rem;
 
-    // Opcional: Aumentar o contraste para as cores dela não ficarem muito escuras
-    filter: contrast(110%) brightness(110%);
-  // --- Estilo se você usar a OPÇÃO A (GIF) ---
   .gif-loading {
-    width: 200px; // Ajuste o tamanho da boneca aqui
-    height: auto;
     border-radius: 50%;
-    mix-blend-mode: multiply;
-
-    // Opcional: Aumentar o contraste para as cores dela não ficarem muito escuras
-    filter: contrast(110%) brightness(110%);
+    box-shadow: 0 0 20px rgba($accent-color, 0.3);
+    width: 150px;
   }
+
+  .loading {
+    font-size: 1.2rem;
+    color: $accent-color;
+    font-weight: bold;
+    animation: pulsar 1.5s infinite;
+  }
+}
+
+// Animação para o texto de "Buscando dados..." piscar suavemente
+@keyframes pulsar {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
 }

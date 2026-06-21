@@ -1,26 +1,26 @@
-<h1 class="titulo-anime">{{ animeSelecionado?.title }}</h1>
-
 <main class="main-container">
-  @if (animeSelecionado) {
+  @if (animeSelecionado && animeSelecionado.data) {
+    
+    <h1 class="titulo-anime">{{ animeSelecionado.data.title }}</h1>
+
     <div class="content-wrapper">
 
       <div class="cotainer-image-anime">
-        <img class="image-src" [src]="animeSelecionado?.images?.jpg?.image_url" alt="capa do anime">
+        <img class="image-src" [src]="animeSelecionado.data.images.jpg.image_url" alt="capa do anime">
       </div>
 
       <div class="container-info-anime">
-        <h2 class="title-anime-small">{{ animeSelecionado?.title }}</h2>
+        <h2 class="title-anime-small">{{ animeSelecionado.data.title }}</h2>
 
         <div class="div-synopis">
           <span class="titile-synopsis">synopsis</span>
-          <p class="synopse">{{ animeSelecionado?.synopsis }}</p>
+          <p class="synopse">{{ animeSelecionado.data.synopsis }}</p>
         </div>
       </div>
 
     </div>
+
   } @else {
-
-
 
     <div class="loading-container">
 
@@ -31,14 +31,15 @@
       </div>
 
       <div class="animation-wrapper">
-
         <div class="dot-runner"></div>
         <div class="dot-runner"></div>
         <div class="dot-runner"></div>
       </div>
-    <div class="loading-container">
-      <p class="loading">Buscando dados no servidor Java...</p>
-    </div>
+      
+      <div class="loading-container">
+        <p class="loading">Buscando dados no servidor Java...</p>
+      </div>
+
     </div>
   }
 </main>
